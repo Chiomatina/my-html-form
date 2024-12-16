@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    input, button {
+      margin: 10px 0;
+      display: block;
+    }
+    label {
+      font-weight: bold;
+    }
+    #result {
+      margin-top: 20px;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h1>Submit Transaction</h1>
+  <form id="transactionForm">
+    <label for="transactionType">Transaction Type (Sale/Purchase):</label>
+    <input type="text" id="transactionType" required>
+
+    <label for="productName">Product Name:</label>
+    <input type="text" id="productName" required>
+
+    <label for="category">Category:</label>
+    <input type="text" id="category" required>
+
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" required>
+
+    <label for="unitPrice">Unit Price:</label>
+    <input type="number" step="0.01" id="unitPrice" required>
+
+    <label for="unitCost">Unit Cost:</label>
+    <input type="number" step="0.01" id="unitCost" required>
+
+    <label for="supplierName">Supplier Name:</label>
+    <input type="text" id="supplierName">
+
+    <label for="customerName">Customer Name:</label>
+    <input type="text" id="customerName">
+
+    <label for="supplierContact">Supplier Contact:</label>
+    <input type="text" id="supplierContact">
+
+    <label for="customerContact">Customer Contact:</label>
+    <input type="text" id="customerContact">
+
+    <button type="button" onclick="submitData()">Submit</button>
+  </form>
+  
+  <div id="result"></div>
+
+  <script>
+    function submitData() {
+      const transactionType = document.getElementById('transactionType').value;
+      const productName = document.getElementById('productName').value;
+      const category = document.getElementById('category').value;
+      const quantity = document.getElementById('quantity').value;
+      const unitPrice = document.getElementById('unitPrice').value;
+      const unitCost = document.getElementById('unitCost').value;
+      const supplierName = document.getElementById('supplierName').value;
+      const customerName = document.getElementById('customerName').value;
+      const supplierContact = document.getElementById('supplierContact').value;
+      const customerContact = document.getElementById('customerContact').value;
+
+      google.script.run.withSuccessHandler(function(response) {
+        document.getElementById('result').innerText = response;
+        document.getElementById('transactionForm').reset();
+      }).handleSubmit(transactionType, productName, category, quantity, unitPrice, unitCost, supplierName, customerName, supplierContact, customerContact);
+    }
+    AKfycbxc7zgn4FeZD2aVz8plvrRhcevBxEnOjL6FyvVC-YzBZMfOjPYpn9y99pOZzgDcuyhh
+  </script>
+</body>
+</html>
